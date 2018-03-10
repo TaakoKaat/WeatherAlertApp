@@ -1,11 +1,24 @@
-<h1>{{city}}</h1>
-<h2>10 Day Forecast</h2>
-<div *ngFor="let forecast of forecast">
-  <h3>{{forecast.day}} {{forecast.date}}</h3>
-  <p class="no-margin">High: {{forecast.high}}</p>
-  <p class="no-margin">Low: {{forecast.low}}</p>
-  <!-- <p>Forecast : {{forecast.text}}</p> -->
-  <div *ngFor="let alert of forecast.alerts"> 
-    <p class="no-margin alert">Alert : {{alert}}</p>
+<h1 class="left-margin">WeatherWatch</h1>
+<h2 class="left-margin">{{city}}</h2>
+<h3 class="left-margin">10 Day Forecast</h3>
+<div class="card-row">
+  <div class="card-item" *ngFor="let forecast of forecast">
+    <div class="text-block">
+      <p class="date-header">{{forecast.day}} {{forecast.date}}</p>
+      <p class="no-margin">
+        <span style="color: red">
+            {{forecast.high}}&deg;
+        </span>
+         | 
+        <span style="color: blue">
+            {{forecast.low}}&deg;
+        </span>
+         {{temperatureScale}}
+      </p>
+      <p class="no-margin">{{forecast.text}}</p>
+      <div *ngFor="let alert of forecast.alerts"> 
+        <p class="alert">Alert: {{alert}}</p>
+      </div>
+    </div>
   </div>
 </div>

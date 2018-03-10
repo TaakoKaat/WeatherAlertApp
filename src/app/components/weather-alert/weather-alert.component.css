@@ -2,7 +2,37 @@
     margin: 0px;
 }
 
+.left-margin {
+    margin-left: 10px;
+}
+
+.text-block {
+    margin: 0px 5px 10px 5px;
+}
+
 .alert {
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: red;
     font-weight: bold;
+}
+
+.card-row {
+    display: flex;
+    flex-wrap: wrap;
+    content: space-between;
+}
+
+.card-item {
+    margin: 10px;
+    width: 215px;
+    border-style: solid;
+    border-color: black;
+    background-color: #f2f2f2;
+}
+
+.date-header {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

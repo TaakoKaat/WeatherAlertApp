@@ -9,20 +9,25 @@ import { WeatherDataService } from '../../services/weather-data.service';
 export class WeatherAlertComponent implements OnInit {
 
   forecast: ForecastDay[];
-  public city: string;
+  city: string;
+  temperatureScale: string;
 
   constructor(private weatherData: WeatherDataService) { }
 
   ngOnInit() {
     this.weatherData.getWeatherData().subscribe((weather) => {
       this.city = weather.query.results.channel.location.city;
+      this.temperatureScale = weather.query.results.channel.units.temperature;
       this.forecast = weather.query.results.channel.item.forecast;
-      this.setAlerts(this.forecast);
+      this.setupData(this.forecast);
     });
   }
 
-  setAlerts(forecastArray: ForecastDay[]) {
+  setupData(forecastArray: ForecastDay[]) {
     forecastArray.forEach(forecast => {
+      // Set up the date field
+      forecast.date = forecast.date.substring(0, forecast.date.length-5);
+
       forecast.alerts = [];
       // Set temp alerts
       if(forecast.high > 85) {
@@ -45,7 +50,7 @@ export class WeatherAlertComponent implements OnInit {
       if(forecast.text.includes('Ice') || forecast.text.includes('ice')) {
         forecast.alerts.push('Ice');
       }
-    })
+    });
   }
 }
 

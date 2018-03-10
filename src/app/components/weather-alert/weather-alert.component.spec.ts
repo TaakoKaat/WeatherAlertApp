@@ -27,7 +27,7 @@ describe('WeatherAlertComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  describe('setAlerts', () => {
+  describe('setupDate', () => {
     it('should set the high temperature alert', () => {
       const testForecast = [{
         code: 30,
@@ -38,7 +38,7 @@ describe('WeatherAlertComponent', () => {
         text: '',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('High Heat');
@@ -54,7 +54,7 @@ describe('WeatherAlertComponent', () => {
         text: '',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('Freezing Temperature');
@@ -70,7 +70,7 @@ describe('WeatherAlertComponent', () => {
         text: 'rain',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('Rain');
@@ -86,7 +86,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Thunderstorm',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('Thunderstorm');
@@ -102,7 +102,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Snow',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('Snow');
@@ -118,7 +118,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Ice',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(1);
       expect(testForecast[0].alerts[0]).toBe('Ice');
@@ -134,7 +134,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Partly Cloudy',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(0);
     });
@@ -149,7 +149,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Partly Cloudy',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(2);
       expect(testForecast[0].alerts.includes('High Heat')).toBeTruthy();
@@ -166,7 +166,7 @@ describe('WeatherAlertComponent', () => {
         text: 'Rain, Snow, Ice',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(3);
       expect(testForecast[0].alerts.includes('Rain')).toBeTruthy();
@@ -184,11 +184,25 @@ describe('WeatherAlertComponent', () => {
         text: 'Rain',
         alerts: [],
       }]
-      component.setAlerts(testForecast);
+      component.setupData(testForecast);
       expect(testForecast[0].alerts).toBeDefined();
       expect(testForecast[0].alerts.length).toBe(2);
       expect(testForecast[0].alerts.includes('Rain')).toBeTruthy();
       expect(testForecast[0].alerts.includes('Freezing Temperature')).toBeTruthy();
+    });
+
+    it('should set the right date', () => {
+      const testForecast = [{
+        code: 30,
+        date: '10 Mar 2018',
+        day: 'Mon',
+        high: 50,
+        low: 50,
+        text: '',
+        alerts: [],
+      }]
+      component.setupData(testForecast);
+      expect(testForecast[0].date).toBe("10 Mar");
     });
   });
 });
