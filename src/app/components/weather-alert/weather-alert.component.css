@@ -1,0 +1,8 @@
+.no-margin {
+    margin: 0px;
+}
+
+.alert {
+    color: red;
+    font-weight: bold;
+}
