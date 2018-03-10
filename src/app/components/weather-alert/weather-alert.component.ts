@@ -33,16 +33,16 @@ export class WeatherAlertComponent implements OnInit {
       }
 
       // Set weather alerts
-      if(forecast.text.includes('Rain')) {
+      if(forecast.text.includes('Rain') || forecast.text.includes('rain')) {
         forecast.alerts.push('Rain');
       }
-      if(forecast.text.includes('Thunderstorms')) {
-        forecast.alerts.push('Thunderstorms');
+      if(forecast.text.includes('Thunderstorm') || forecast.text.includes('thunderstorm')) {
+        forecast.alerts.push('Thunderstorm');
       }
-      if(forecast.text.includes('Snow')) {
+      if(forecast.text.includes('Snow') || forecast.text.includes('snow')) {
         forecast.alerts.push('Snow');
       }
-      if(forecast.text.includes('Ice')) {
+      if(forecast.text.includes('Ice') || forecast.text.includes('ice')) {
         forecast.alerts.push('Ice');
       }
     })
@@ -56,5 +56,5 @@ interface ForecastDay {
   high: number;
   low: number;
   text: string;
-  alerts: string[];
+  alerts?: string[];
 }
